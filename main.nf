@@ -8,7 +8,7 @@ process computePI {
     stdout
   script:
     """
-    mpirun -n $x /home/user/pi 
+    sleep 10; mpirun -n $x /home/user/pi 
     """
 }
 
