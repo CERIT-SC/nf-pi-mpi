@@ -21,12 +21,13 @@ int main(int argc, char *argv[]) {
   MPI_Init(&argc, &argv);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &workers);
-  if (rank == 0) {
-    printf("Host %s, workers: %d, ", hostname, workers);
-  }
   char hostname[MPI_MAX_PROCESSOR_NAME];
   MPI_Get_processor_name(hostname, &proc_name_size);
 
+  if (rank == 0) {
+    printf("Host %s, workers: %d, ", hostname, workers);
+  }
+  
   std::minstd_rand generator(rank);
   std::uniform_real_distribution<double> distribution(-1.0, 1.0);
   double x, y;
