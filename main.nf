@@ -8,10 +8,10 @@ process sayHello {
     stdout
   script:
     """
-    echo '$x world!'
+    mpirun -n 2 /home/user/pi $x
     """
 }
 
 workflow {
-  Channel.of('Bonjour', 'Ciao', 'Hello', 'Hola') | sayHello | view
+  Channel.of('1', '2', '3', '3') | sayHello | view
 }
