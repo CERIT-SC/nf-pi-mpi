@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2 
 
-process sayHello {
+process computePI {
   input: 
     val x
   output:
@@ -13,5 +13,5 @@ process sayHello {
 }
 
 workflow {
-  Channel.of('1', '2', '3', '3') | sayHello | view
+  Channel.of('1', '2', '3', '4') | computePI | view
 }
