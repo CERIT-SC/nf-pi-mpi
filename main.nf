@@ -8,10 +8,10 @@ process computePI {
     stdout
   script:
     """
-    mpirun -n 2 /home/user/pi $x
+    mpirun -n $x /home/user/pi 
     """
 }
 
 workflow {
-  Channel.of('1', '2', '3', '4') | computePI | view
+  Channel.of('2', '3', '4', '5') | computePI | view
 }

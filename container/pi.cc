@@ -22,11 +22,10 @@ int main(int argc, char *argv[]) {
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &workers);
   if (rank == 0) {
-    printf("Workers: %d, ", workers);
+    printf("Host %s, workers: %d, ", hostname, workers);
   }
   char hostname[MPI_MAX_PROCESSOR_NAME];
   MPI_Get_processor_name(hostname, &proc_name_size);
-  printf("Rank %d on host %s, ", rank, hostname);
 
   std::minstd_rand generator(rank);
   std::uniform_real_distribution<double> distribution(-1.0, 1.0);
@@ -45,8 +44,6 @@ int main(int argc, char *argv[]) {
   if (rank == 0) {
     double pi = 4 * (double)total_count / (double)(worker_tests) / (double)(workers);
     printf("pi is approximately %.16lf\n", pi);
-  } else {
-    printf("\n");
   }
   MPI_Finalize();
   return 0;
